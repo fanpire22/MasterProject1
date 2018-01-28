@@ -17,9 +17,9 @@ public class SineMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void Update()
+    private void FixedUpdate()
     {
-        float sin = (Mathf.Sin(Time.time * _period) * _amplitude + _offset) * Time.deltaTime;
+        float sin = (Mathf.Sin(Time.time * _period) * _amplitude + _offset);
 
         Vector3 frameLocation = initialPos + (AxesSine *  sin);
 

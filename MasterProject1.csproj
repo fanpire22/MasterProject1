@@ -301,9 +301,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\_Assets\Characters\Minion\Script\Character\PlayerController.cs" />
-    <Compile Include="Assets\_Assets\Script\GameManager.cs" />
+    <Compile Include="Assets\_Assets\Script\Character\Damageable.cs" />
+    <Compile Include="Assets\_Assets\Script\Character\ShooterCharacter.cs" />
+    <Compile Include="Assets\_Assets\Script\Crates\MultiCrate.cs" />
+    <Compile Include="Assets\_Assets\Script\Crates\WeaponCrate.cs" />
+    <Compile Include="Assets\_Assets\Script\Enemies\CritterMove.cs" />
+    <Compile Include="Assets\_Assets\Script\Enemies\Enemy.cs" />
+    <Compile Include="Assets\_Assets\Script\Enemies\EnemyChaser.cs" />
+    <Compile Include="Assets\_Assets\Script\HUD\GameManager.cs" />
     <Compile Include="Assets\_Assets\Script\Movement\CharacterControllerMove.cs" />
     <Compile Include="Assets\_Assets\Script\Movement\SineMovement.cs" />
+    <Compile Include="Assets\_Assets\Script\Weapons\Grenade.cs" />
+    <Compile Include="Assets\_Assets\Script\Weapons\GrenadeProyectile.cs" />
+    <Compile Include="Assets\_Assets\Script\Weapons\WeaponBase.cs" />
     <Compile Include="Assets\EffectExamples\Shared\Scripts\DecalDestroyer.cs" />
     <Compile Include="Assets\EffectExamples\Shared\Scripts\ExtinguishableFire.cs" />
     <Compile Include="Assets\EffectExamples\Shared\Scripts\GunAim.cs" />

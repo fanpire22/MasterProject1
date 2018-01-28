@@ -8,6 +8,9 @@ public class CharacterControllerMove : MonoBehaviour
     [Header("References")]
     [SerializeField]
     private AudioClip[] _footSteps;
+    [SerializeField] private AudioClip _jump;
+    [SerializeField] private AudioClip _land;
+
 
     [Header("Movement")]
     [SerializeField]
@@ -21,14 +24,17 @@ public class CharacterControllerMove : MonoBehaviour
     private Vector3 currentDirection;
     private float cameraPitch;
     private float speed;
+    private GameManager gm;
 
     private CharacterController _controller;
     private AudioSource _SFX;
+    private bool bOnAir = false;
 
     private void Awake()
     {
         _controller = GetComponent<CharacterController>();
         _SFX = GetComponent<AudioSource>();
+        gm = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
     }
 
     private void Start()
@@ -40,11 +46,18 @@ public class CharacterControllerMove : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Pause) return;
+        if (gm.Pause) return;
 
         //Velocidad: Depende de si estamos andando o corriendo. También habría que desenfocar levemente la cámara para aumentar el efecto de velocidad
         if (_controller.isGrounded)
         {
+            if (bOnAir)
+            {
+                //Hemos aterrizado. Reproducimos el sonido de aterrizaje
+                _SFX.clip = _land;
+                _SFX.Play();
+                bOnAir = false;
+            }
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 speed = _runningSpeed;
@@ -74,6 +87,9 @@ public class CharacterControllerMove : MonoBehaviour
         if (Input.GetButtonDown("Jump") && _controller.isGrounded)
         {
             currentDirection.y = _jumpForce;
+            _SFX.clip = _jump;
+            _SFX.Play();
+            bOnAir = true;
         }
 
         //Si no estamos en el suelo, caemos
