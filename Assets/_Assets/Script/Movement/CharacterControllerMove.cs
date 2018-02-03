@@ -6,8 +6,7 @@ using UnityEngine;
 public class CharacterControllerMove : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField]
-    private AudioClip[] _footSteps;
+    [SerializeField] private AudioClip[] _footSteps;
     [SerializeField] private AudioClip _jump;
     [SerializeField] private AudioClip _land;
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class WeaponCrate : MonoBehaviour {
 
 
-    private int[] Restore = new int[] { 24, 4, 48, 8, 160 }; //Van en orden: Ballesta, Pociones, Rayo, Misil y Lanzallamas
+    private int[] Restore = new int[] { 0, 24, 4, 48, 8, 160 }; //Van en orden: Ballesta, Pociones, Rayo, Misil y Lanzallamas. El primero es un cero por la armadura
 
     [SerializeField] private EBehaviour currentType;
 
@@ -48,7 +48,7 @@ public class WeaponCrate : MonoBehaviour {
                 //Es armadura, no arma
                 chara.AddArmor();
             }
-            Destroy(gameObject);
+            Destroy(transform.root.gameObject);
         }
     }
 

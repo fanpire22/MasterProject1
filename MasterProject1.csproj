@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.3.0f3</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -301,6 +303,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\_Assets\Characters\Minion\Script\Character\PlayerController.cs" />
+    <Compile Include="Assets\_Assets\Script\Character\BGMPlayer.cs" />
     <Compile Include="Assets\_Assets\Script\Character\Damageable.cs" />
     <Compile Include="Assets\_Assets\Script\Character\ShooterCharacter.cs" />
     <Compile Include="Assets\_Assets\Script\Crates\MultiCrate.cs" />
@@ -311,8 +314,12 @@
     <Compile Include="Assets\_Assets\Script\HUD\GameManager.cs" />
     <Compile Include="Assets\_Assets\Script\Movement\CharacterControllerMove.cs" />
     <Compile Include="Assets\_Assets\Script\Movement\SineMovement.cs" />
-    <Compile Include="Assets\_Assets\Script\Weapons\Grenade.cs" />
-    <Compile Include="Assets\_Assets\Script\Weapons\GrenadeProyectile.cs" />
+    <Compile Include="Assets\_Assets\Script\Weapons\Proyectiles\Bolt.cs" />
+    <Compile Include="Assets\_Assets\Script\Weapons\Proyectiles\DaggerProyectile.cs" />
+    <Compile Include="Assets\_Assets\Script\Weapons\Proyectiles\PotionProyectile.cs" />
+    <Compile Include="Assets\_Assets\Script\Weapons\Throwers\Crossbow.cs" />
+    <Compile Include="Assets\_Assets\Script\Weapons\Throwers\DaggerThrower.cs" />
+    <Compile Include="Assets\_Assets\Script\Weapons\Throwers\PotionThrower.cs" />
     <Compile Include="Assets\_Assets\Script\Weapons\WeaponBase.cs" />
     <Compile Include="Assets\EffectExamples\Shared\Scripts\DecalDestroyer.cs" />
     <Compile Include="Assets\EffectExamples\Shared\Scripts\ExtinguishableFire.cs" />

@@ -48,19 +48,19 @@ public class MultiCrate : MonoBehaviour
         {
             case EBehaviour.life:
                 //Curamos al jugador
-                if (player.Heal(lifeRestore)) Destroy(gameObject);
+                if (player.Heal(lifeRestore)) Destroy(transform.root.gameObject);
                 break;
             case EBehaviour.Ammo:
                 //Recargamos todas las armas que haya recogido el jugador
-                if (player.AddAmmo(Restore)) Destroy(gameObject);
+                if (player.AddAmmo(Restore)) Destroy(transform.root.gameObject);
                 break;
             case EBehaviour.Both:
                 //Curamos y recargamos
-                if (player.Heal(lifeRestore) || player.AddAmmo(Restore)) Destroy(gameObject);
+                if (player.Heal(lifeRestore) || player.AddAmmo(Restore)) Destroy(transform.root.gameObject);
                 break;
             default:
                 //Curamos y recargamos
-                if (player.Heal(lifeRestore) || player.AddAmmo(Restore)) Destroy(gameObject);
+                if (player.Heal(lifeRestore) || player.AddAmmo(Restore)) Destroy(transform.root.gameObject);
                 break;
         }
         

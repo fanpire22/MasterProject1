@@ -15,6 +15,7 @@ public class ShooterCharacter : Damageable
     [SerializeField]
     GameObject _pauseMenu;
     [SerializeField] GameObject _deathMenu;
+
     private GameManager gm;
 
     //Arma seleccionada actual
@@ -89,7 +90,7 @@ public class ShooterCharacter : Damageable
 
 
 
-        if (direction == 0)
+        if (direction != 0)
             //intentamos elegir un arma que no tenemos por su número
             if (!_weapons[index].bInventory) return;
             else if (direction > 0)
@@ -170,6 +171,30 @@ public class ShooterCharacter : Damageable
     }
 
     /// <summary>
+    /// Función que recibe daño de una fuente externa
+    /// </summary>
+    /// <param name="damage">Daño recibido de forma externa</param>
+    /// <param name="damageType">Tipo de daño recibido (explosivo, balístico...). Por defecto, no importa</param>
+    /// <returns>True = Destruído, False = Sigue vivo</returns>
+    public override float GetDamage(int damage, int damageType)
+    {
+        gm.ActualizarVida(base.GetDamage(damage, damageType));
+        return 0;
+    }
+
+    /// <summary>
+    /// Función que recibe daño de una fuente externa
+    /// </summary>
+    /// <param name="damage">Daño recibido de forma externa</param>
+    /// <returns>True = Curado, False = Ya estaba curado</returns>
+    public override bool Heal(int amount)
+    {
+        bool HaCurado = base.Heal(amount);
+        gm.ActualizarVida(base.Life);
+        return HaCurado;
+    }
+
+    /// <summary>
     /// Se nos ha muerto el personaje: volvemos al menú principal
     /// </summary>
     protected override void OnDead()
@@ -179,6 +204,8 @@ public class ShooterCharacter : Damageable
         Time.timeScale = 1;
         _deathMenu.SetActive(true);
     }
+
+    
     //Función del Ammo pickup
     public bool AddAmmo(int[] amount)
     {
@@ -220,7 +247,7 @@ public class ShooterCharacter : Damageable
     /// </summary>
     public void AddArmor()
     {
-        gm.ActualizarProt(base.AddArmor(5));
+        gm.ActualizarProt(base.AddArmor(5)/5);
     }
 
 }

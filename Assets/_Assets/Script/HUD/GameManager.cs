@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private GameObject[] _Armor;
 
     private int currentW;
+    private BGMPlayer player;
 
     public int CurrentWeapon
     {
@@ -23,12 +24,18 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    private void Awake()
+    {
+        player = FindObjectOfType<BGMPlayer>();
+        PlayMusic(0);
+    }
+
     private void Start()
     {
         ActualizarArma(0);
         ActualizarVida(1f);
     }
-
+    
     /// <summary>
     /// Función que actualiza el HUD de vida
     /// </summary>
@@ -84,6 +91,15 @@ public class GameManager : MonoBehaviour {
         _wIcons.GetChild(currentW).gameObject.SetActive(false);
         _wIcons.GetChild(valor).gameObject.SetActive(true);
         currentW = valor;
+    }
+
+    /// <summary>
+    /// función que cambia la música. Puede ser llamada por enemigos (Boss) o triggers
+    /// </summary>
+    /// <param name="index">Índice de la canción</param>
+    public void PlayMusic(int index)
+    {
+        player.PlayBGM(index);
     }
 
 }

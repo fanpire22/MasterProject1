@@ -2,31 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grenade : WeaponBase
+public class PotionThrower : WeaponBase
 {
 
-    [Header("Grenade")]
-    [SerializeField] GrenadeProyectile prefGrenade;
+    [Header("Potion")]
+    [SerializeField] PotionProyectile prefGrenade;
     [SerializeField] float _forceArm;
     [SerializeField] float _forceUp;
-
-    // Update is called once per frame
+    
     private void Awake()
     {
         base.AddAmmo(5);
     }
 
     /// <summary>
-    /// Función para disparar, heredada de WeaponBase
+    /// Función para disparar, heredada de WeaponBase. Lanzamos una poción al aire que explotará al cabo de un rato o al tocar algo
     /// </summary>
     protected override void OnShoot()
     {
-        GrenadeProyectile granada = Instantiate(prefGrenade, transform.position, transform.rotation);
+        PotionProyectile pocion = Instantiate(prefGrenade, transform.position, transform.rotation);
 
         Vector3 direction = (transform.forward + Vector3.up * _forceUp) * _forceArm;
 
-        granada.damage = base._damage;
-        granada.Throw(direction);
+        pocion.damage = base._damage;
+        pocion.Throw(direction);
         
     }
 

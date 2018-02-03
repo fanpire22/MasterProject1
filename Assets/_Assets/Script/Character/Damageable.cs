@@ -14,10 +14,12 @@ public class Damageable : MonoBehaviour
     public bool IsDead { get; private set; }
 
     private int _life;
+    public float Life { get; private set; }
 
     protected virtual void Start()
     {
         _life = _maxLife;
+        Life = 1;
     }
 
     public GameObject GetOverrideBulletHole()
@@ -31,9 +33,9 @@ public class Damageable : MonoBehaviour
     /// <param name="damage">Daño recibido de forma externa</param>
     /// <param name="damageType">Tipo de daño recibido (explosivo, balístico...). Por defecto, no importa</param>
     /// <returns>True = Destruído, False = Sigue vivo</returns>
-    public virtual bool GetDamage(int damage, int damageType)
+    public virtual float GetDamage(int damage, int damageType)
     {
-        if (_GodMode) return false;
+        if (_GodMode) return 1;
 
         //Hacemos un daño mínimo de 1
         _life -= Mathf.Max((damage - _armor),1);
@@ -44,7 +46,9 @@ public class Damageable : MonoBehaviour
             OnDead();
         }
 
-        return _life < 1;
+        Life = (float)_life / _maxLife;
+
+        return Life;
     }
 
     protected virtual void OnDead()
@@ -52,11 +56,12 @@ public class Damageable : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public bool Heal(int amount)
+    public virtual bool Heal(int amount)
     {
         //Curamos hasta un máximo de nuestra vida máxima
         bool haCambiado = _life != _maxLife;
         _life = Mathf.Min((_life + amount), _maxLife);
+        Life = (float)_life / _maxLife;
         return haCambiado;
     }
 

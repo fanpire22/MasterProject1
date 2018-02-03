@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrenadeProyectile : MonoBehaviour
+public class PotionProyectile : MonoBehaviour
 {
     public AudioClip sfxExplosion;
     public GameObject prefExplosion;
@@ -30,6 +30,16 @@ public class GrenadeProyectile : MonoBehaviour
     public void Throw(Vector3 direction)
     {
         rig.AddForce(direction, ForceMode.Impulse);
+    }
+
+    /// <summary>
+    /// Hemos chocado con algo: la poción explota
+    /// </summary>
+    /// <param name="collision"></param>
+    public void OnCollisionEnter(Collision collision)
+    {
+        CancelInvoke();
+        Explode();
     }
 
     /// <summary>
