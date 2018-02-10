@@ -6,6 +6,7 @@ public class BGMPlayer : MonoBehaviour
 {
 
     [SerializeField] private AudioClip[] _BGM;
+    private int currentSong = -1;
     private AudioSource _SFX;
 
     private void Awake () {
@@ -21,6 +22,8 @@ public class BGMPlayer : MonoBehaviour
     {
         if(_BGM.Length > 0)
         {
+            if (currentSong == index) return;
+
             if (_SFX.isPlaying) _SFX.Stop();
 
             //Hemos inicializado alguna canción para el BGMPlayer
@@ -28,11 +31,13 @@ public class BGMPlayer : MonoBehaviour
             {
                 //La canción está dentro del rango de nuestras canciones
                 _SFX.clip = _BGM[index];
+                currentSong = index;
             }
             else
             {
                 //Reproducimos la última canción
                 _SFX.clip = _BGM[_BGM.Length-1];
+                currentSong = _BGM.Length-1;
             }
             _SFX.Play();
         }

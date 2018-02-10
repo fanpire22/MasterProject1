@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyChaser : Enemy
 {
-
+    [Header("Propiedades básicas del Minion")]
     [SerializeField] float _speed;
     [SerializeField] float _speedRotation;
     [SerializeField] float _rof;
@@ -13,9 +13,8 @@ public class EnemyChaser : Enemy
     [SerializeField] float _minDistanceLook;
     [SerializeField] float _timeRandomBehaviour;
     [SerializeField] float ViewTargetBaseOffset;
-    [SerializeField] GameObject _prefShot;
-    [SerializeField] Transform PewSpawner1;
-    [SerializeField] Transform PewSpawner2;
+    [SerializeField] Transform Weapon1;
+    [SerializeField] Transform Weapon2;
 
 
     private CharacterController _chara;
@@ -41,6 +40,7 @@ public class EnemyChaser : Enemy
     // Update is called once per frame
     private void Update()
     {
+        if (GameManager.Pause) return;
 
         if (_playerLocation)
         {
@@ -49,7 +49,7 @@ public class EnemyChaser : Enemy
 
             direction.y = 0;
 
-            if (distance < _minDistanceAttack)
+            if (distance <= _minDistanceAttack)
             {
                 _destinyOrientation = Quaternion.LookRotation(direction);
                 //Attack
@@ -58,13 +58,6 @@ public class EnemyChaser : Enemy
                 if (_playerDamageable && Time.time > _timeStamp && !_playerDamageable.IsDead)
                 {
                     _timeStamp = Time.time + _rof;
-                    if (_prefShot)
-                    {
-                        GameObject flash = Instantiate(_prefShot, PewSpawner1);
-                        GameObject flash2 = Instantiate(_prefShot, PewSpawner2);
-                        Destroy(flash, 0.2f);
-                        Destroy(flash2, 0.2f);
-                    }
                     _playerDamageable.GetDamage(_damage, 0);
                     
                 }

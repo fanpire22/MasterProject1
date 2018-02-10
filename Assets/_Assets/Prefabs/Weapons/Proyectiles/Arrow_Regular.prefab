@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2374320}
   - component: {fileID: 9529774}
   - component: {fileID: 136308761044593844}
-  - component: {fileID: 114849846268201032}
   - component: {fileID: 54230885739531406}
   m_Layer: 0
   m_Name: Arrow_Regular
@@ -118,19 +117,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!114 &114849846268201032
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 111768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f45eee0a872a90e4795ae7a0f061fe90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sfxImpact: {fileID: 8300000, guid: b2273d3c0819d4e4e9f7d7aab5e5b114, type: 3}
-  damage: 15
 --- !u!136 &136308761044593844
 CapsuleCollider:
   m_ObjectHideFlags: 1

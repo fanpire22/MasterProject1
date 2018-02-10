@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Crossbow : WeaponBase
 {
-
-    [Header("CrossbowAttributes")]
-    [SerializeField]
-    Bolt prefBolt;
-    [SerializeField] float _forceArm;
+    
+    [SerializeField] private int _numImpacts;
+    [SerializeField] GameObject bolt;
+    private Transform _rayOrigin;
 
     private void Awake()
     {
+        _rayOrigin = transform.Find("Bolt");
         base.AddAmmo(30);
     }
 
@@ -20,13 +20,37 @@ public class Crossbow : WeaponBase
     /// </summary>
     protected override void OnShoot()
     {
-        Bolt virote = Instantiate(prefBolt, transform.position, transform.rotation);
+        bolt.SetActive(false);
+        Invoke("MuestraVirote", base._RoF);
+        Vector3 CenterScreen = Camera.main.ViewportToScreenPoint(new Vector3(.5f, .5f));
+        Ray ray = Camera.main.ScreenPointToRay(CenterScreen);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, float.PositiveInfinity))
+        {
+            Vector3 worldPoint = hit.point;
+            Vector3 dirWorldPoint = (worldPoint - _rayOrigin.position).normalized;
 
-        Vector3 direction = (transform.forward) * _forceArm;
+            RaycastHit[] hits = Physics.RaycastAll(_rayOrigin.position, dirWorldPoint, 1000);
+            
+            for (int i = 0; i < hits.Length; i++)
+            {
+                if (i > _numImpacts-1) break;
 
-        virote.damage = base._damage;
-        virote.Throw(direction);
+                
+                Damageable dmg = hits[i].collider.GetComponent<Damageable>();
 
+                if (dmg)
+                {
+                    dmg.GetDamage(base._damage, 0);
+                    break;
+                }
+            }
+        }
+    }
+
+    private void MuestraVirote()
+    {
+        bolt.SetActive(true);
     }
 
     /// <summary>

@@ -45,7 +45,7 @@ public class CharacterControllerMove : MonoBehaviour
 
     private void Update()
     {
-        if (gm.Pause) return;
+        if (GameManager.Pause) return;
 
         //Velocidad: Depende de si estamos andando o corriendo. También habría que desenfocar levemente la cámara para aumentar el efecto de velocidad
         if (_controller.isGrounded)

@@ -53,11 +53,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4580174910145968}
-  - component: {fileID: 114107507615933232}
   - component: {fileID: 54921614834907840}
   - component: {fileID: 135683978599632820}
+  - component: {fileID: 114222487229777010}
   m_Layer: 0
-  m_Name: ErekiBall
+  m_Name: LightningBolt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -216,7 +216,7 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114107507615933232
+--- !u!114 &114222487229777010
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -224,14 +224,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1432665664785820}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c1e840d2b9723642aeb1be2e31ddc5d, type: 3}
+  m_Script: {fileID: 11500000, guid: 33f6f799724d0ad4a9b9971ec412ad0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sfxExplosion: {fileID: 8300000, guid: 0dcfe736485e63542b5036dc5b360032, type: 3}
-  prefExplosion: {fileID: 1000011128802252, guid: 96730f8640590934eacb6f860058e7f9,
-    type: 2}
-  Radius: 2
-  Damage: 20
+  sfxImpact: {fileID: 8300000, guid: ca679721d8a1b6243acc9a7ce566789b, type: 3}
+  damage: 5
 --- !u!135 &135683978599632820
 SphereCollider:
   m_ObjectHideFlags: 1

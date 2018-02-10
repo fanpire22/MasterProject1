@@ -10,6 +10,8 @@ public class Damageable : MonoBehaviour
     [SerializeField] private int _armor;
     [SerializeField] bool _GodMode = false;
     [SerializeField] GameObject _prefBulletHole;
+    [SerializeField] GameObject[] _lootTable;
+    [SerializeField] float[] _lootChances;
 
     public bool IsDead { get; private set; }
 
@@ -53,6 +55,26 @@ public class Damageable : MonoBehaviour
 
     protected virtual void OnDead()
     {
+        if (_lootTable.Length > 0)
+        {
+            //Lo que acabamos de matar puede soltar loot, hacemos tiradas en la tabla de loot.
+            for(int i = 0; i < _lootTable.Length; i++)
+            {
+                if(_lootChances.Length > i)
+                {
+                    //Normalmente se espera que las tablas estén igualadas, pero si no lo están, no tiramos
+                    if (Random.Range(0f, 100f) <= _lootChances[i])
+                    {
+                        //Ya no seguimos tirando: Spawneamos el objeto en sí en la ubicación de nuestro objeto (respetando la y para que el objeto 
+                        //generado no esté bajo tierra) y destruimos el damageable
+                        GameObject loot = Instantiate(_lootTable[i]);
+                        loot.transform.position = new Vector3(transform.position.x, loot.transform.position.y, transform.position.z);
+                        Destroy(this.gameObject);
+                        return;
+                    }
+                }
+            }
+        }
         Destroy(this.gameObject);
     }
 

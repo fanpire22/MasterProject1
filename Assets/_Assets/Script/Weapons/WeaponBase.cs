@@ -14,7 +14,6 @@ public abstract class WeaponBase : MonoBehaviour
     [SerializeField] private int _maxAmmo;
     [SerializeField] private AudioClip _sfxEmpty;
     [SerializeField] private bool _bInfiniteAmmo = false;
-    public Sprite imagen;
 
     public bool bInventory;
 

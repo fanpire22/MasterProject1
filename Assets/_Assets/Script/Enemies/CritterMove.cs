@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CritterMove : Enemy {
 
+    [Header("Propiedades Básícas del Critter")]
     private CharacterController _controller;
     [SerializeField]private float _speed;
     [SerializeField] private float _minTime;
@@ -32,6 +33,7 @@ public class CritterMove : Enemy {
 	
 	// Update is called once per frame
 	private void Update () {
+        if (GameManager.Pause) return;
         _controller.SimpleMove(transform.forward * _speed);
     }
 

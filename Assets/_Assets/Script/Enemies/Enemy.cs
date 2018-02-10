@@ -24,14 +24,10 @@ public class Enemy : Damageable
             {
                 Destroy(muerte, _timePrefMuerte);
                 gameObject.SetActive(false);
-                Destroy(gameObject, _timePrefMuerte);
             }
 
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+        base.OnDead();
 
     }
 

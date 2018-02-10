@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bolt : MonoBehaviour
+public class Proyectile : MonoBehaviour
 {
     public AudioClip sfxImpact;
     public int damage;
@@ -15,16 +15,16 @@ public class Bolt : MonoBehaviour
     }
 
     /// <summary>
-    /// Función para lanzar la granada
+    /// Función para lanzar la daga
     /// </summary>
-    /// <param name="direction">dirección a la que lanzarla</param>
+    /// <param name="direction">dirección a la que lanzar el proyectil</param>
     public void Throw(Vector3 direction)
     {
         rig.AddForce(direction, ForceMode.Impulse);
     }
 
     /// <summary>
-    /// Hemos chocado con algo: la daga daña
+    /// Hemos chocado con algo: rl proyectil daña
     /// </summary>
     /// <param name="collision"></param>
     public void OnCollisionEnter(Collision collision)
@@ -39,4 +39,5 @@ public class Bolt : MonoBehaviour
         //Destruimos la daga
         Destroy(this.gameObject);
     }
+    
 }

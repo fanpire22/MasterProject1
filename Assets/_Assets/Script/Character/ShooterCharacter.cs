@@ -42,7 +42,7 @@ public class ShooterCharacter : Damageable
 
         if (IsDead) return;
 
-        if (gm.Pause) return;
+        if (GameManager.Pause) return;
         float mouseWheel = Input.GetAxis("Mouse ScrollWheel");
 
         //Hemos movido lo suficiente la rueda como para elegir un arma
@@ -69,7 +69,7 @@ public class ShooterCharacter : Damageable
     private void OnGUI()
     {
         if (IsDead) return;
-        if (gm.Pause) return;
+        if (GameManager.Pause) return;
         //obtenemos la tecla pulsada en código ascii, y le restamos el valor a partir del que empezamos a contar el valor 1
         int ascii = Event.current.character;
         ascii = ascii - 49;
@@ -154,7 +154,7 @@ public class ShooterCharacter : Damageable
     /// </summary>
     public void ShowMenu(bool IsVisible)
     {
-        gm.Pause = IsVisible;
+        GameManager.Pause = IsVisible;
         Time.timeScale = IsVisible ? 0 : 1;
         Cursor.visible = IsVisible;
         Cursor.lockState = IsVisible ? CursorLockMode.None : CursorLockMode.Locked;

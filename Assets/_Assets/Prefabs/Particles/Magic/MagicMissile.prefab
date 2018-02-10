@@ -36,6 +36,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4377049704699160}
+  - component: {fileID: 54613423271485392}
+  - component: {fileID: 135336586674336566}
+  - component: {fileID: 114419177699742838}
   m_Layer: 0
   m_Name: MagicMissile
   m_TagString: Untagged
@@ -86,7 +89,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4586295795473304}
   - component: {fileID: 33943906204356172}
-  - component: {fileID: 135966762458193676}
   - component: {fileID: 23652425414935954}
   m_Layer: 0
   m_Name: Sphere
@@ -128,7 +130,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1602600432958414}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -3.009, y: 2.7, z: 7.591}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4661934594322152}
@@ -143,7 +145,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1975153359964388}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.059, z: 0.044}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 4377049704699160}
@@ -205,17 +207,52 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1975153359964388}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!135 &135966762458193676
+--- !u!54 &54613423271485392
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1602600432958414}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
+--- !u!114 &114419177699742838
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1602600432958414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71e274bc61596b848b20e35e55d585a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SfxExplosion: {fileID: 8300000, guid: 3bbe242bc37c8614fbe02c843ed5b465, type: 3}
+  PrefExplosion: {fileID: 1754869293537310, guid: 9a2b111177c3f9644b5c5d1fa791d93b,
+    type: 2}
+  Fuse: 4
+  Radius: 5
+  Damage: 30
+  Speed: 12
+  MinDistanceDetonation: 0.6
+  MinDistanceLook: 7
+--- !u!135 &135336586674336566
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1975153359964388}
+  m_GameObject: {fileID: 1602600432958414}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &198031983657373488
 ParticleSystem:

@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DaggerThrower : WeaponBase {
+public class MissileThrower : WeaponBase
+{
 
-    [Header("DaggerAttributes")]
-    [SerializeField] Proyectile prefDagger;
-    [SerializeField] float _forceArm;
+    [Header("MagicMissileAttributes")]
+    [SerializeField]
+    MagicMissile prefMissile;
 
     private void Awake()
     {
-        base.AddAmmo(30);
+        base.AddAmmo(5);
     }
 
     /// <summary>
@@ -18,12 +19,9 @@ public class DaggerThrower : WeaponBase {
     /// </summary>
     protected override void OnShoot()
     {
-        Proyectile daga = Instantiate(prefDagger, transform.position, transform.rotation);
+        MagicMissile misil = Instantiate(prefMissile, transform.position, transform.rotation);
 
-        Vector3 direction = (transform.forward) * _forceArm;
-
-        daga.damage = base._damage;
-        daga.Throw(direction);
+        misil.Damage = base._damage;
 
     }
 

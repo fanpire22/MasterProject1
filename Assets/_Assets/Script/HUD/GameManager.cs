@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-    public bool Pause = false;
+    public static bool Pause = false;
 
     [SerializeField] private Transform _wIcons;
     [SerializeField] private Text _hudAmmo;
     [SerializeField] private Image _life;
     [SerializeField] private Image _noAmmo;
     [SerializeField] private GameObject[] _Armor;
+    [SerializeField] private Image _crossHair;
 
     private int currentW;
     private BGMPlayer player;
@@ -88,6 +89,12 @@ public class GameManager : MonoBehaviour {
     /// 5 - Misil</param>
     public void ActualizarArma(int valor)
     {
+        _crossHair.gameObject.SetActive(false);
+        if (valor == 1)
+        {
+            //Estamos cambiando a la ballesta. Mostramos crosshair
+            _crossHair.gameObject.SetActive(true);
+        }
         _wIcons.GetChild(currentW).gameObject.SetActive(false);
         _wIcons.GetChild(valor).gameObject.SetActive(true);
         currentW = valor;

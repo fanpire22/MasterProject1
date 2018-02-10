@@ -6,7 +6,7 @@ public class MultiCrate : MonoBehaviour
 {
     public EBehaviour CurrentBehaviour;
 
-    private  int[] Restore = new int[] { 6, 12, 2, 24, 4, 80 }; //Van en orden: Dagas, Ballesta, Pociones, Rayo, Misil y Lanzallamas
+    private  int[] Restore = new int[] { 6, 12, 2, 24, 80, 4 }; //Van en orden: Dagas, Ballesta, Pociones, Rayo, Lanzallamas y Misil
     private int lifeRestore = 50; //La vida que el jugador va a recuperar. Se separan para que la recuperación de armas sea más streamlined
 
     public enum EBehaviour
