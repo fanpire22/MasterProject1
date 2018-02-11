@@ -13,6 +13,7 @@ public class EnemyTower : Enemy
     private float spawnerDistance;
 
     private ShooterCharacter player;
+    RaycastHit hit;
 
     private void Awake()
     {
@@ -30,15 +31,17 @@ public class EnemyTower : Enemy
     // Update is called once per frame
     void Update()
     {
+        //Disparamos si vemos al jugador y no está pausado el juego... o se ha muerto, claro
         if (!player.IsDead && !GameManager.Pause)
         {
             Vector3 direction = player.transform.position - transform.position;
 
             transform.rotation = Quaternion.LookRotation(direction.normalized);
 
-            if (direction.magnitude < _attackDistance)
+            if (Physics.Raycast(transform.position + transform.forward, transform.forward, out hit, _attackDistance))
             {
-                Shoot();
+                if (hit.collider.CompareTag("Player"))
+                    Shoot();
             }
         }
     }

@@ -313,6 +313,8 @@
     <Compile Include="Assets\_Assets\Script\Enemies\EnemyChaser.cs" />
     <Compile Include="Assets\_Assets\Script\Enemies\EnemyTower.cs" />
     <Compile Include="Assets\_Assets\Script\Enemies\MinionSpawner.cs" />
+    <Compile Include="Assets\_Assets\Script\Game\Exit.cs" />
+    <Compile Include="Assets\_Assets\Script\Game\MainMenu.cs" />
     <Compile Include="Assets\_Assets\Script\HUD\GameManager.cs" />
     <Compile Include="Assets\_Assets\Script\Movement\CharacterControllerMove.cs" />
     <Compile Include="Assets\_Assets\Script\Movement\SineMovement.cs" />
@@ -320,6 +322,7 @@
     <Compile Include="Assets\_Assets\Script\Weapons\Proyectiles\MagicMissile.cs" />
     <Compile Include="Assets\_Assets\Script\Weapons\Proyectiles\PotionProyectile.cs" />
     <Compile Include="Assets\_Assets\Script\Weapons\Proyectiles\Proyectile.cs" />
+    <Compile Include="Assets\_Assets\Script\Weapons\Throwers\ChainedBolts.cs" />
     <Compile Include="Assets\_Assets\Script\Weapons\Throwers\Crossbow.cs" />
     <Compile Include="Assets\_Assets\Script\Weapons\Throwers\DaggerThrower.cs" />
     <Compile Include="Assets\_Assets\Script\Weapons\Throwers\FlameThrower.cs" />

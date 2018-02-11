@@ -5,7 +5,7 @@ using UnityEngine;
 public class WeaponCrate : MonoBehaviour {
 
 
-    private int[] Restore = new int[] { 0, 24, 4, 48, 8, 160 }; //Van en orden: Ballesta, Pociones, Rayo, Misil y Lanzallamas. El primero es un cero por la armadura
+    private int[] Restore = new int[] { 0, 24, 4, 48, 160, 8 }; //Van en orden: Ballesta, Pociones, Rayo, Lanzallamas y Misil. El primero es un cero por la armadura
 
     [SerializeField] private EBehaviour currentType;
 
@@ -15,8 +15,8 @@ public class WeaponCrate : MonoBehaviour {
         Crossbow,
         Potions,
         Thunder,
-        Missile,
-        Flamethrower
+        Flamethrower,
+        Missile
     }
 
     // Use this for initialization

@@ -12,9 +12,9 @@ public class ShooterCharacter : Damageable
     private WeaponBase[] _weapons;
 
     [Header("Propiedades de menú")]
-    [SerializeField]
-    GameObject _pauseMenu;
+    [SerializeField] GameObject _pauseMenu;
     [SerializeField] GameObject _deathMenu;
+    [SerializeField] GameObject _winMenu;
 
     private GameManager gm;
 
@@ -90,28 +90,48 @@ public class ShooterCharacter : Damageable
 
 
 
-        if (direction != 0)
+        if (direction == 0)
+        {
             //intentamos elegir un arma que no tenemos por su número
             if (!_weapons[index].bInventory) return;
-            else if (direction > 0)
+        }
+        else if (direction > 0)
+        {
+            //intentamos elegir un arma que no tenemos en dirección ascendente
+            if (!_weapons[index].bInventory)
             {
-                //intentamos elegir un arma que no tenemos en dirección ascendente
-                if (!_weapons[index].bInventory)
+                bool bEncontrada = false;
+                for (int i = index; i < _weapons.Length; i++)
                 {
-                    SelectWeaponAtIndex(index + 1, direction);
+                    if (_weapons[i].bInventory)
+                    {
+                        //Hemos encontrado un arma en el inventario, la escogemos
+                        bEncontrada = true;
+                        SelectWeaponAtIndex(i, 0);
+                        return;
+                    }
+                }
+                //Siempre vamos a tener las dagas, así que las elegimos a ellas
+                if (!bEncontrada)
+                {
+                    SelectWeaponAtIndex(0, 0);
+                    return;
                 }
             }
-            else
+        }
+        else
+        {
+            //intentamos elegir un arma que no tenemos en dirección descendente
+            for (int i = index-1; i >= 0; i++)
             {
-                //intentamos elegir un arma que no tenemos en dirección descendente
-                if (!_weapons[index].bInventory)
+                if (_weapons[i].bInventory)
                 {
-                    if (index < 1)
-                    { SelectWeaponAtIndex(_weapons.Length - 1, direction); }
-                    else
-                    { SelectWeaponAtIndex(index - 1, direction); };
+                    //Hemos encontrado un arma en el inventario, la escogemos;
+                    SelectWeaponAtIndex(i, 0);
+                    return;
                 }
             }
+        }
 
         //Desactivamos el arma sacada
         _currentW.gameObject.SetActive(false);
@@ -160,16 +180,7 @@ public class ShooterCharacter : Damageable
         Cursor.lockState = IsVisible ? CursorLockMode.None : CursorLockMode.Locked;
         _pauseMenu.SetActive(IsVisible);
     }
-
-    /// <summary>
-    /// Función que nos devuelve al menú principal
-    /// </summary>
-    public void ReturnMainMenu()
-    {
-        Time.timeScale = 1;
-        SceneManager.LoadScene(0);
-    }
-
+    
     /// <summary>
     /// Función que recibe daño de una fuente externa
     /// </summary>
@@ -199,13 +210,27 @@ public class ShooterCharacter : Damageable
     /// </summary>
     protected override void OnDead()
     {
+        GameManager.Pause = true;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 1;
         _deathMenu.SetActive(true);
+        gm.PlayMusic(2);
     }
 
-    
+    /// <summary>
+    /// Hemos llegado a la meta: Mostramos la ventana de victoria
+    /// </summary>
+    public void OnWin()
+    {
+        GameManager.Pause = true;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 1;
+        _winMenu.SetActive(true);
+        gm.PlayMusic(3);
+    }
+
     //Función del Ammo pickup
     public bool AddAmmo(int[] amount)
     {
@@ -247,7 +272,7 @@ public class ShooterCharacter : Damageable
     /// </summary>
     public void AddArmor()
     {
-        gm.ActualizarProt(base.AddArmor(5)/5);
+        gm.ActualizarProt(base.AddArmor(5) / 5);
     }
 
 }

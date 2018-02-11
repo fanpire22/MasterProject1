@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -107,6 +108,37 @@ public class GameManager : MonoBehaviour {
     public void PlayMusic(int index)
     {
         player.PlayBGM(index);
+    }
+
+    /// <summary>
+    /// Función que nos devuelve al menú principal
+    /// </summary>
+    public void ReturnMainMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(0);
+    }
+
+    /// <summary>
+    /// Función que cierra el juego
+    /// </summary>
+    public void ExitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
+
+    /// <summary>
+    /// Función que reinicia el nivel
+    /// </summary>
+    public void Retry()
+    {
+        Time.timeScale = 1;
+        Pause = false;
+        SceneManager.LoadScene(1);
     }
 
 }

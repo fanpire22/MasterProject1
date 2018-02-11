@@ -6,7 +6,8 @@ public class Crossbow : WeaponBase
 {
     
     [SerializeField] private int _numImpacts;
-    [SerializeField] GameObject bolt;
+    [SerializeField] GameObject _bolt;
+    [SerializeField] AudioClip _sfxPew;
     private Transform _rayOrigin;
 
     private void Awake()
@@ -20,7 +21,8 @@ public class Crossbow : WeaponBase
     /// </summary>
     protected override void OnShoot()
     {
-        bolt.SetActive(false);
+        if (_sfxPew) AudioSource.PlayClipAtPoint(_sfxPew, _rayOrigin.position);
+        _bolt.SetActive(false);
         Invoke("MuestraVirote", base._RoF);
         Vector3 CenterScreen = Camera.main.ViewportToScreenPoint(new Vector3(.5f, .5f));
         Ray ray = Camera.main.ScreenPointToRay(CenterScreen);
@@ -50,7 +52,7 @@ public class Crossbow : WeaponBase
 
     private void MuestraVirote()
     {
-        bolt.SetActive(true);
+        _bolt.SetActive(true);
     }
 
     /// <summary>
